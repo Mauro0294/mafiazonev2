@@ -12,35 +12,13 @@ class CrimeController extends Controller
     }
     public function misdaadRequest(Request $request, $crimeId)
     {
-        switch ($crimeId) {
-            case 1:
-                $random = rand(1, 2);
-                if ($random == 1) {
-                    $money = rand(100, 500);
-                } else {
-                    return redirect('misdaad');
-                }
-                break;
-            case 2:
-                $random = rand(1, 3);
-                if ($random == 1) {
-                    $money = rand(500, 1000);
-                } else {
-                    return redirect('misdaad');
-                }
-                break;
-            case 3:
-                $random = rand(1, 4);
-                if ($random == 1) {
-                    $money = rand(2000, 5000);
-                } else {
-                    return redirect('misdaad');
-                }
-                break;
-            default:
-                $money = 0;
-                break;
+        $random = rand(1, $crimeId + 1);
+        if ($random == 1) {
+            $money = rand(100 * $crimeId, 500 * $crimeId);
+        } else {
+            return redirect('misdaad');
         }
+
         $user = auth()->user();
         $user->cash = $user->cash + $money;
         $user->save();
