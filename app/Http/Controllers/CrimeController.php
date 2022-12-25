@@ -14,7 +14,7 @@ class CrimeController extends Controller
     {
         $random = rand(1, $crimeId + 1);
         if ($random == 1) {
-            $money = rand(100 * $crimeId, 500 * $crimeId);
+            $money = rand(250 * $crimeId, 500 * $crimeId);
         } else {
             return redirect('misdaad');
         }

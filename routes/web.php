@@ -16,7 +16,7 @@ Route::get('/signout', [AuthController::class, 'signOut'])->name('signout');
 
 // Crime Routes
 Route::get('/misdaad', [CrimeController::class, 'misdaad'])->name('misdaad')->middleware('auth');
-Route::post('/misdaad/{crimeId}', [CrimeController::class, 'misdaadRequest'])->name('misdaadRequest')->middleware('auth');
+Route::post('/misdaad/{crimeId}', [CrimeController::class, 'misdaadRequest'])->where('crimeId', '[1-3]')->name('misdaadRequest')->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
